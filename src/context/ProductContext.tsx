@@ -1,11 +1,7 @@
-import axios from "axios";
-import React, { createContext, useContext, useEffect, useState } from "react";
-import type { Product } from "../utils/types";
 
-interface ProductsContextType {
-  products: Product[];
-  // Optionally expose loading, product, or fetch methods
-}
+import React, { createContext, useContext } from "react";
+
+interface ProductsContextType {}
 
 const ProductsContext = createContext<ProductsContextType | undefined>(
   undefined
@@ -16,54 +12,21 @@ interface ProductsProviderProps {
 }
 
 export const ProductsProvider: React.FC<ProductsProviderProps> = ({
+  // State untuk product
+
+  // Function untuk create product
+
+  // Function untuk get product by id
+
+  // Function untuk update product
+
+  // Function untuk delete product
+
+
   children,
 }) => {
-  const [loading, setLoading] = useState<boolean>(false);
-  const [products, setProducts] = useState<Product[]>([]);
-  const [product, setProduct] = useState<Product | null>(null);
-
-  const fetchProducts = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get<{ data: Product[] }>(
-        `${import.meta.env.VITE_API_URL}/api/products`
-      );
-      console.log("data", response.data.data);
-      setProducts(response.data.data);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const getProductById = async (id: number) => {
-    setLoading(true);
-    try {
-      // Implement logic here
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const getAllCategory = async () => {
-    try {
-      // Implement logic here
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
   return (
-    <ProductsContext.Provider value={{ products }}>
-      {children}
-    </ProductsContext.Provider>
+    <ProductsContext.Provider value={{}}>{children}</ProductsContext.Provider>
   );
 };
 
